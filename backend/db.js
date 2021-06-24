@@ -8,9 +8,9 @@ const db = async () => {
       useFindAndModify: false,
       useCreateIndex: true,
     });
-    console.log('🌩  Database Connected');
+    console.log('🌩  Database Connected \n');
   } catch (err) {
-    console.log('🌧 Database Connection Error', err);
+    console.log('🌧 Database Connection Error \n', err);
     process.exit(1);
   }
 };
