@@ -5,6 +5,9 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const db = require('./db');
 
+// bringing routes
+const blogRoutes = require('./routes/blog');
+
 //creating the app
 const app = express();
 
@@ -16,15 +19,13 @@ app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(express.json({ limit: '10mb' }));
 
-// using cors
+// using cors for development purpose
 if (process.env.NODE_ENV === 'development') {
   app.use(cors({ origin: `${process.env.CLIENT_URL}` }));
 }
 
-// routes
-app.get('/api', (req, res) => {
-  res.status(200).send('Server is live and running 🔥🔥🔥');
-});
+// routes middleware
+app.use('/api', blogRoutes);
 
 // starting the server
 const port = process.env.PORT || 8000;
