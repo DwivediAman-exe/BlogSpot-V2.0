@@ -24,6 +24,7 @@
     "mongoose": "^5.12.14",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.7",
+    "shortid": "^2.2.16",
     "slugify": "^1.5.3",
     "string-strip-html": "^8.3.0"
   }
