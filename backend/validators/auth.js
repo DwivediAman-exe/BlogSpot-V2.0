@@ -8,3 +8,11 @@ exports.userSignupValidator = [
     .isEmpty()
     .isLength({ min: 6 }),
 ];
+
+exports.userSigninValidator = [
+  check('email', 'Email or Password is incorrect').isEmail(),
+  check('password', 'Email or Password is incorrect')
+    .not()
+    .isEmpty()
+    .isLength({ min: 6 }),
+];

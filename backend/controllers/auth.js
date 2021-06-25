@@ -1,29 +1,9 @@
 const User = require('../models/user');
 const shortId = require('shortid');
+const jwt = require('jsonwebtoken');
+const expressJwt = require('express-jwt');
 
-// exports.signup = (req, res) => {
-//   const { name, email, password } = req.body;
-
-//   User.findOne({ email }).exec((err, user) => {
-//     if (user) {
-//       return res.status(400).json({ error: 'Email is already in use' });
-//     }
-
-//     let username = shortId.generate();
-//     let profile = `${process.env.CLIENT_URL}/profile/${username}`;
-
-//     let newUser = new User({ name, email, password, profile, username });
-
-//     newUser.save((err, success) => {
-//       if (err) return res.status(400).json({ error: err });
-//       res.json({
-//         user: newUser,
-//       });
-//       // res.json({ message: 'Signup Successful ! Please LogIn' });
-//     });
-//   });
-// };
-
+// signUP method
 exports.signup = async (req, res) => {
   const { name, email, password } = req.body;
 
@@ -48,3 +28,52 @@ exports.signup = async (req, res) => {
     res.status(500).send('SignUp Server error');
   }
 };
+
+// signIN method
+exports.signin = async (req, res) => {
+  const { email, password } = req.body;
+
+  //check if user doesnot exists
+  await User.findOne({ email }).exec((err, user) => {
+    if (err || !user) {
+      return res
+        .status(400)
+        .json({ error: 'Email does not exists. Please SignUp' });
+    }
+
+    // if authentication user error
+    if (!user.authenticate(password)) {
+      return res.status(400).json({ error: 'Email and Password do not match' });
+    }
+
+    // else generate a token
+    const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
+      expiresIn: '3 days',
+    });
+
+    // using cookies to store token
+    res.cookie('token', token, { expiresIn: '3 days' });
+
+    const { _id, username, name, email, role } = user;
+
+    // sending required details to client
+    return res.json({
+      token,
+      user: { _id, username, name, email, role },
+    });
+  });
+};
+
+// signOUT method
+exports.signout = (req, res) => {
+  res.clearCookie('token');
+  res.json({
+    message: 'Signout success',
+  });
+};
+
+// Protected routes
+exports.requireSignin = expressJwt({
+  secret: process.env.JWT_SECRET,
+  algorithms: ['HS256'],
+});
