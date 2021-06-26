@@ -8,6 +8,7 @@ const db = require('./db');
 // bringing routes
 const blogRoutes = require('./routes/blog');
 const authRoutes = require('./routes/auth');
+const userRoutes = require('./routes/user');
 
 //creating the app
 const app = express();
@@ -28,6 +29,7 @@ if (process.env.NODE_ENV === 'development') {
 // routes middleware
 app.use('/api', blogRoutes);
 app.use('/api', authRoutes);
+app.use('/api', userRoutes);
 
 // starting the server
 const port = process.env.PORT || 8000;
