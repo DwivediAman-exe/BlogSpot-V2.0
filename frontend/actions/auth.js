@@ -41,6 +41,24 @@ export const signin = async (user) => {
   }
 };
 
+// signout action
+export const signout = async (next) => {
+  removeCookie('token');
+  removeLocalStorage('user');
+  next();
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_DEVELOPMENT}/signout`,
+      {
+        method: 'GET',
+      }
+    );
+    console.log('Signout done');
+  } catch (err) {
+    return console.error(err.message);
+  }
+};
+
 // setting cookies
 export const setCookie = (key, value) => {
   if (process.browser) {
@@ -62,7 +80,7 @@ export const removeCookie = (key, value) => {
 // getting cookies
 export const getCookie = (key) => {
   if (process.browser) {
-    cookie.get(key);
+    return cookie.get(key);
   }
 };
 

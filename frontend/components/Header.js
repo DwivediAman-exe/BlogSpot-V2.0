@@ -1,6 +1,11 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { Fragment } from 'react';
+import { signout, isAuth } from '../actions/auth';
 
 const Header = () => {
+  const router = useRouter();
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-info shadow-1-strong mb-4">
       <Link href="/">
@@ -31,23 +36,37 @@ const Header = () => {
         </ul>
         {/* right links */}
         <div className="d-flex align-items-center">
-          <Link href="/signin">
+          {!isAuth() && (
+            <Fragment>
+              <Link href="/signin">
+                <button
+                  type="button"
+                  className="btn btn-rounded text-dark me-4 ms-4 mt-1 mb-1"
+                >
+                  <a>LogIn</a>
+                </button>
+              </Link>
+              <Link href="/signup">
+                <button
+                  type="button"
+                  className="btn
+						btn-rounded me-4 ps-4 pe-4 text-dark mb-1 mt-1"
+                >
+                  Sign Up for free
+                </button>
+              </Link>
+            </Fragment>
+          )}
+
+          {isAuth() && (
             <button
               type="button"
               className="btn btn-rounded text-dark me-4 ms-4 mt-1 mb-1"
+              onClick={() => signout(() => router.replace(`/signin`))}
             >
-              <a>LogIn</a>
+              <a>Signout</a>
             </button>
-          </Link>
-          <Link href="/signup">
-            <button
-              type="button"
-              className="btn
-						btn-rounded me-5 ps-4 pe-4 text-dark mb-1 mt-1"
-            >
-              Sign Up for free
-            </button>
-          </Link>
+          )}
         </div>
       </div>
     </nav>

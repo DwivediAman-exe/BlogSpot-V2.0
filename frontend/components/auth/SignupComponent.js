@@ -1,7 +1,10 @@
-import { Fragment, useState } from 'react';
-import { signup } from '../../actions/auth';
+import { useRouter } from 'next/router';
+import { Fragment, useEffect, useState } from 'react';
+import { signup, isAuth } from '../../actions/auth';
 
 const Signupcomponent = () => {
+  const router = useRouter();
+
   const initialValues = {
     name: '',
     email: '',
@@ -13,6 +16,10 @@ const Signupcomponent = () => {
   };
 
   const [values, setValues] = useState(initialValues);
+
+  useEffect(() => {
+    isAuth() && router.push(`/`);
+  }, []);
 
   const { name, email, password, loading, error, message, showForm } = values;
 
