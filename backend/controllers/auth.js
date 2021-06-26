@@ -84,9 +84,9 @@ exports.requireSignin = expressJwt({
 });
 
 // user access
-exports.authMiddleware = (req, res, next) => {
+exports.authMiddleware = async (req, res, next) => {
   const authUserId = req.user._id;
-  User.findById({ _id: authUserId }).exec((err, user) => {
+  await User.findById({ _id: authUserId }).exec((err, user) => {
     if (err || !user) {
       return res.status(400).json({
         error: 'User not found',
@@ -98,9 +98,9 @@ exports.authMiddleware = (req, res, next) => {
 };
 
 // admin access
-exports.adminMiddleware = (req, res, next) => {
+exports.adminMiddleware = async (req, res, next) => {
   const adminUserId = req.user._id;
-  User.findById({ _id: adminUserId }).exec((err, user) => {
+  await User.findById({ _id: adminUserId }).exec((err, user) => {
     if (err || !user) {
       return res.status(400).json({
         error: 'User not found',

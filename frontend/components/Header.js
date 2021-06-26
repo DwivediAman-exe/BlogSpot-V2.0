@@ -70,7 +70,7 @@ const Header = () => {
                   <button
                     type="button"
                     className="btn fw-normal
-						btn-rounded me-3 ps-4 pe-4 text-dark mb-1 mt-1"
+						btn-rounded me-3 ps-4 pe-4 text-dark mb-1 mt-1 ms-4"
                     style={{ letterSpacing: '0.07rem' }}
                   >
                     {`${isAuth().name}`}'s Dashboard
@@ -81,7 +81,7 @@ const Header = () => {
                   <button
                     type="button"
                     className="btn fw-normal
-						btn-rounded me-3 ps-4 pe-4 text-dark mb-1 mt-1"
+						btn-rounded me-3 ps-4 pe-4 text-dark mb-1 mt-1 ms-4"
                     style={{ letterSpacing: '0.07rem' }}
                   >
                     {`${isAuth().name}`}'s Dashboard
