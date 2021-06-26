@@ -32,7 +32,11 @@ const SigninComponent = () => {
         setValues({ ...values, error: data.error, loading: false });
       } else {
         authenticate(data, () => {
-          router.push('/');
+          if (isAuth() && isAuth().role === 1) {
+            router.push('/admin');
+          } else {
+            router.push('/user');
+          }
         });
       }
     });

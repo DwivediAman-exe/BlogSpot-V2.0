@@ -7,9 +7,12 @@ const Header = () => {
   const router = useRouter();
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-info shadow-1-strong mb-4">
+    <nav
+      className="navbar navbar-expand-lg navbar-dark bg-info shadow-1-strong mb-4"
+      style={{ letterSpacing: '0.1rem' }}
+    >
       <Link href="/">
-        <a className="navbar-brand fs-2 ms-4 me-5">
+        <a className="navbar-brand fs-2 ms-4 me-5 fw-bold">
           <i class="fas fa-mail-bulk ms-2 me-3 fs-2 "></i>
           {process.env.NEXT_PUBLIC_APP_NAME}
         </a>
@@ -42,6 +45,7 @@ const Header = () => {
                 <button
                   type="button"
                   className="btn btn-rounded text-dark me-4 ms-4 mt-1 mb-1"
+                  style={{ letterSpacing: '0.07rem' }}
                 >
                   <a>LogIn</a>
                 </button>
@@ -51,6 +55,7 @@ const Header = () => {
                   type="button"
                   className="btn
 						btn-rounded me-4 ps-4 pe-4 text-dark mb-1 mt-1"
+                  style={{ letterSpacing: '0.07rem' }}
                 >
                   Sign Up for free
                 </button>
@@ -59,13 +64,40 @@ const Header = () => {
           )}
 
           {isAuth() && (
-            <button
-              type="button"
-              className="btn btn-rounded text-dark me-4 ms-4 mt-1 mb-1"
-              onClick={() => signout(() => router.replace(`/signin`))}
-            >
-              <a>Signout</a>
-            </button>
+            <Fragment>
+              {isAuth().role === 0 ? (
+                <Link href="/user">
+                  <button
+                    type="button"
+                    className="btn fw-normal
+						btn-rounded me-3 ps-4 pe-4 text-dark mb-1 mt-1"
+                    style={{ letterSpacing: '0.07rem' }}
+                  >
+                    {`${isAuth().name}`}'s Dashboard
+                  </button>
+                </Link>
+              ) : (
+                <Link href="/admin">
+                  <button
+                    type="button"
+                    className="btn fw-normal
+						btn-rounded me-3 ps-4 pe-4 text-dark mb-1 mt-1"
+                    style={{ letterSpacing: '0.07rem' }}
+                  >
+                    {`${isAuth().name}`}'s Dashboard
+                  </button>
+                </Link>
+              )}
+
+              <button
+                type="button"
+                className="btn btn-rounded fw-light text-dark me-4 ms-4 mt-1 mb-1"
+                style={{ letterSpacing: '0.07rem' }}
+                onClick={() => signout(() => router.replace(`/signin`))}
+              >
+                <a>Signout</a>
+              </button>
+            </Fragment>
           )}
         </div>
       </div>
