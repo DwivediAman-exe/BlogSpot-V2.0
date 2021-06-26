@@ -10,7 +10,6 @@ class MyDocument extends Document {
             charSet="UTF-8"
             content="width=device-width, initial-scale=1.0"
           />
-
           {/* Font Awesome */}
           <link
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
@@ -29,13 +28,11 @@ class MyDocument extends Document {
         </Head>
         <body>
           <Main />
-          <NextScript>
-            {/* MDB script*/}
-            <script
-              type="text/javascript"
-              src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"
-            ></script>
-          </NextScript>
+          <NextScript />
+          <script
+            type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"
+          ></script>
         </body>
       </Html>
     );
