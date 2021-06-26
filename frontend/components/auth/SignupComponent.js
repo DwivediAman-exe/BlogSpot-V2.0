@@ -1,11 +1,9 @@
 import { Fragment, useState } from 'react';
-import { signin, authenticate } from '../../actions/auth';
-import { useRouter } from 'next/router';
+import { signup } from '../../actions/auth';
 
-const SigninComponent = () => {
-  const router = useRouter();
-
+const Signupcomponent = () => {
   const initialValues = {
+    name: '',
     email: '',
     password: '',
     error: '',
@@ -16,19 +14,26 @@ const SigninComponent = () => {
 
   const [values, setValues] = useState(initialValues);
 
-  const { email, password, loading, error, message, showForm } = values;
+  const { name, email, password, loading, error, message, showForm } = values;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // console.table({ values });
     setValues({ ...values, loading: true, error: false });
-    const user = { email, password };
-    signin(user).then((data) => {
+    const user = { name, email, password };
+    signup(user).then((data) => {
       if (data.error) {
         setValues({ ...values, error: data.error, loading: false });
       } else {
-        authenticate(data, () => {
-          router.push('/');
+        setValues({
+          ...values,
+          name: '',
+          email: '',
+          password: '',
+          error: '',
+          loading: false,
+          message: data.message,
+          showForm: false,
         });
       }
     });
@@ -66,9 +71,24 @@ const SigninComponent = () => {
       ''
     );
 
-  const signinForm = () => {
+  const signupForm = () => {
     return (
       <form onSubmit={handleSubmit}>
+        <div class="form-outline mt-4">
+          <label class="form-label fs-5 mb-0" for="typeName">
+            Name
+          </label>
+          <input
+            type="name"
+            id="typeName"
+            name="name"
+            value={name}
+            onChange={handleChange}
+            className="form-control fs-6 ps-3 pt-1 pb-0"
+            disabled={loading}
+            style={{ borderBottom: '2px solid gray', width: '100%' }}
+          />
+        </div>
         <div class="form-outline mt-4">
           <label class="form-label fs-5 mb-0" for="typeEmail">
             Email Address
@@ -115,9 +135,9 @@ const SigninComponent = () => {
       {showError()}
       {showLoading()}
       {showMessage()}
-      {showForm && signinForm()}
+      {showForm && signupForm()}
     </Fragment>
   );
 };
 
-export default SigninComponent;
+export default Signupcomponent;

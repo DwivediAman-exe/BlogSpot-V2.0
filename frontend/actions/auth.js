@@ -1,5 +1,7 @@
 import fetch from 'isomorphic-fetch';
+import cookie from 'js-cookie';
 
+// signup action
 export const signup = async (user) => {
   try {
     const response = await fetch(
@@ -19,6 +21,7 @@ export const signup = async (user) => {
   }
 };
 
+// signin action
 export const signin = async (user) => {
   try {
     const response = await fetch(
@@ -35,5 +38,63 @@ export const signin = async (user) => {
     return await response.json();
   } catch (err) {
     return console.error(err.message);
+  }
+};
+
+// setting cookies
+export const setCookie = (key, value) => {
+  if (process.browser) {
+    cookie.set(key, value, {
+      expires: 2,
+    });
+  }
+};
+
+// removing cookies
+export const removeCookie = (key, value) => {
+  if (process.browser) {
+    cookie.remove(key, {
+      expires: 2,
+    });
+  }
+};
+
+// getting cookies
+export const getCookie = (key) => {
+  if (process.browser) {
+    cookie.get(key);
+  }
+};
+
+// storing cookie
+export const setLocalStorage = (key, value) => {
+  if (process.browser) {
+    localStorage.setItem(key, JSON.stringify(value));
+  }
+};
+
+export const removeLocalStorage = (key) => {
+  if (process.browser) {
+    localStorage.removeItem(key);
+  }
+};
+
+// authentication during signin
+export const authenticate = (data, next) => {
+  setCookie('token', data.token);
+  setLocalStorage('user', data.user);
+  next();
+};
+
+export const isAuth = () => {
+  if (process.browser) {
+    const cookieChecked = getCookie('token');
+    if (cookieChecked) {
+      if (localStorage.getItem('user')) {
+        return JSON.parse(localStorage.getItem('user'));
+      } else {
+        return false;
+      }
+    }
   }
 };
