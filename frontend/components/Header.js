@@ -1,11 +1,15 @@
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import Router from 'next/router';
 import { Fragment } from 'react';
 import { signout, isAuth } from '../actions/auth';
+import NProgress from 'nprogress';
+import '.././node_modules/nprogress/nprogress.css';
+
+Router.events.on('routeChangeStart', () => NProgress.start());
+Router.events.on('routeChangeComplete', () => NProgress.done());
+Router.events.on('routeChangeError', () => NProgress.done());
 
 const Header = () => {
-  const router = useRouter();
-
   return (
     <nav
       className="navbar navbar-expand-lg navbar-dark bg-info shadow-1-strong mb-4"
@@ -93,7 +97,7 @@ const Header = () => {
                 type="button"
                 className="btn btn-rounded fw-light text-dark me-4 ms-4 mt-1 mb-1"
                 style={{ letterSpacing: '0.07rem' }}
-                onClick={() => signout(() => router.replace(`/signin`))}
+                onClick={() => signout(() => Router.replace(`/signin`))}
               >
                 <a>Signout</a>
               </button>

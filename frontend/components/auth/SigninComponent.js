@@ -1,10 +1,8 @@
 import { Fragment, useState, useEffect } from 'react';
 import { signin, authenticate, isAuth } from '../../actions/auth';
-import { useRouter } from 'next/router';
+import Router from 'next/router';
 
 const SigninComponent = () => {
-  const router = useRouter();
-
   const initialValues = {
     email: '',
     password: '',
@@ -17,7 +15,7 @@ const SigninComponent = () => {
   const [values, setValues] = useState(initialValues);
 
   useEffect(() => {
-    isAuth() && router.push(`/`);
+    isAuth() && Router.push(`/`);
   }, []);
 
   const { email, password, loading, error, message, showForm } = values;
@@ -33,9 +31,9 @@ const SigninComponent = () => {
       } else {
         authenticate(data, () => {
           if (isAuth() && isAuth().role === 1) {
-            router.push('/admin');
+            Router.push('/admin');
           } else {
-            router.push('/user');
+            Router.push('/user');
           }
         });
       }
