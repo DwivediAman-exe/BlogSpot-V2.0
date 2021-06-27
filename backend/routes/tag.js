@@ -2,26 +2,26 @@ const express = require('express');
 const router = express.Router();
 
 // controllers
-const { create, list, read, remove } = require('../controllers/category');
+const { create, list, read, remove } = require('../controllers/tag');
 const { adminMiddleware, requireSignin } = require('../controllers/auth');
 
 // validators
 const { runValidation } = require('../validators');
-const { categoryCreateValidator } = require('../validators/category');
+const { tagCreateValidator } = require('../validators/tag');
 
 router.post(
-  '/category',
-  categoryCreateValidator,
+  '/tag',
+  tagCreateValidator,
   runValidation,
   requireSignin,
   adminMiddleware,
   create
 );
 
-router.get('/categories', list);
+router.get('/tags', list);
 
-router.get('/category/:slug', read);
+router.get('/tag/:slug', read);
 
-router.delete('/category/:slug', requireSignin, adminMiddleware, remove);
+router.delete('/tag/:slug', requireSignin, adminMiddleware, remove);
 
 module.exports = router;
