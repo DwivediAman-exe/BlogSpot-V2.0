@@ -6,7 +6,7 @@ const Layout = ({ children }) => {
     <Fragment>
       <Header />
       {children}
-      <p>footer</p>
+      {/* for footer */}
     </Fragment>
   );
 };
