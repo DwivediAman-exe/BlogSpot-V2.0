@@ -18,3 +18,26 @@ export const createBlog = async (data, token) => {
     return console.error(err.message);
   }
 };
+
+export const listAllBlogsCategoriesTags = async (skip, limit) => {
+  try {
+    const data = {
+      limit,
+      skip,
+    };
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_DEVELOPMENT}/blogs-categories-tags`,
+      {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      }
+    );
+    return await response.json();
+  } catch (err) {
+    return console.error(err.message);
+  }
+};

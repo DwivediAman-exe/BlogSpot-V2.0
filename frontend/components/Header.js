@@ -12,11 +12,11 @@ Router.events.on('routeChangeError', () => NProgress.done());
 const Header = () => {
   return (
     <nav
-      className="navbar navbar-expand-lg navbar-dark bg-info shadow-1-strong mb-4"
+      className="navbar navbar-expand-lg sticky-top navbar-dark bg-info shadow-1-strong mb-4"
       style={{ letterSpacing: '0.1rem' }}
     >
       <Link href="/">
-        <a className="navbar-brand fs-2 ms-4 me-5 fw-bold">
+        <a className="navbar-brand fs-2 ms-4 me-4 fw-bold">
           <i class="fas fa-mail-bulk ms-2 me-3 fs-2 "></i>
           {process.env.NEXT_PUBLIC_APP_NAME}
         </a>
@@ -35,11 +35,9 @@ const Header = () => {
       <div className="collapse navbar-collapse" id="navbarButtonsExample">
         {/*  Left links */}
         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-          {/* <li className="nav-item">
-            <a className="nav-link" href="#">
-              Dashboard
-            </a>
-          </li> */}
+          <Link href="/blogs">
+            <a className="text-light fs-5 ms-4 pt-1 fw-lighter">Blogs</a>
+          </Link>
         </ul>
         {/* right links */}
         <div className="d-flex align-items-center">
