@@ -41,3 +41,17 @@ export const listAllBlogsCategoriesTags = async (skip, limit) => {
     return console.error(err.message);
   }
 };
+
+export const singleBlog = async (slug = undefined) => {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_DEVELOPMENT}/blog/${slug}`,
+      {
+        method: 'GET',
+      }
+    );
+    return await response.json();
+  } catch (err) {
+    return console.log(err);
+  }
+};
