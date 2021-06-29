@@ -6,7 +6,12 @@ const Card = ({ blog }) => {
   const showBlogCategories = (blog) => {
     return blog.categories.map((c, i) => (
       <Link key={i} href={`/categories/${c.slug}`}>
-        <a className="btn btn-primary btn-sm m-1">{c.name}</a>
+        <a
+          className="btn btn-rounded fw-bold hover-shadow m-1"
+          style={{ color: '#1EAE98' }}
+        >
+          {c.name}
+        </a>
       </Link>
     ));
   };
@@ -14,51 +19,75 @@ const Card = ({ blog }) => {
   const showBlogTags = (blog) => {
     return blog.tags.map((t, i) => (
       <Link key={i} href={`/tags/${t.slug}`}>
-        <a className="btn btn-outline-primary btn-sm m-1">{t.name}</a>
+        <a
+          className="btn btn-rounded fw-bold hover-shadow m-1"
+          style={{ color: '#FB743E' }}
+        >
+          {t.name}
+        </a>
       </Link>
     ));
   };
 
   return (
-    <div className="lead pb-4">
-      <header>
+    <div
+      className="pb-4 pt-4 ps-3 pe-3 mt-3 mb-4 card hover-shadow"
+      style={{
+        borderRadius: '20px',
+        height: '100%',
+      }}
+    >
+      <header className="card-title">
         <Link href={`/blogs/${blog.slug}`}>
-          <a>
-            <h2 className="text-info">{blog.title}</h2>
+          <a
+            className=" text-decoration-underline fs-2"
+            style={{ color: 'black' }}
+          >
+            {blog.title}
           </a>
         </Link>
       </header>
       <section>
-        <p className="p-2">
-          Written by {blog.postedBy.name} | Published{' '}
-          {moment(blog.updatedAt).fromNow()}
+        <p className="fst-italic" style={{ color: '#766161' }}>
+          <small>Written by </small>
+          {blog.postedBy.username} |{' '}
+          <small>Published {moment(blog.updatedAt).fromNow()}</small>
         </p>
       </section>
       <section>
         <p>
           {showBlogCategories(blog)}
           {showBlogTags(blog)}
+          <small
+            className="fw-strong float-end mt-2 mb-1 fst-italic"
+            style={{ color: '#A7BBC7' }}
+          >
+            - categories and tags
+          </small>
         </p>
       </section>
       <div className="row">
-        <div className="col-md-4">
-          <section>
+        <div className="col-md-3">
+          <section className="pt-4 text-center">
             <img
-              classname="img img-fluid"
+              className="img img-fluid shadow-2-strong  img-thumbnail rounded"
               src={`${process.env.NEXT_PUBLIC_API_DEVELOPMENT}/blog/photo/${blog.slug}`}
               alt={blog.title}
-              style={{ maxHeight: '250px', width: 'auto' }}
+              style={{
+                height: '200px',
+                width: '180px',
+                maxHeight: '200px',
+                maxWidth: '180px',
+                objectFit: 'cover',
+              }}
             />
           </section>
         </div>
-        <div className="col-md-8">
-          <section>
-            <div className="pb-3">{renderHTML(blog.excerpt)}</div>
-
+        <div className="col-md-9">
+          <section className="pt-3">
+            <div>{renderHTML(blog.excerpt)}</div>
             <Link href={`/blogs/${blog.slug}`}>
-              <a className="fw-bold text-secondary">
-                <small>Read more</small>
-              </a>
+              <a className="text-info float-end fw-bold pe-5">Read more...</a>
             </Link>
           </section>
         </div>

@@ -55,3 +55,22 @@ export const singleBlog = async (slug = undefined) => {
     return console.log(err);
   }
 };
+
+export const listRelated = async (blog) => {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_DEVELOPMENT}/blogs/related`,
+      {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(blog),
+      }
+    );
+    return await response.json();
+  } catch (err) {
+    return console.error(err.message);
+  }
+};

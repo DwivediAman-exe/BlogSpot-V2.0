@@ -78,7 +78,15 @@ const Blogs = ({
     return (
       size > 0 &&
       size >= limit && (
-        <button onClick={loadMore} className="btn btn-outline-primary btn-lg">
+        <button
+          onClick={loadMore}
+          className="btn btn-rounded btn-lg text-dark"
+          style={{
+            border: '2px solid #D6E0F0',
+            borderTopLeftRadius: '0px',
+            backgroundColor: '#D6E0F0',
+          }}
+        >
           Load more
         </button>
       )
@@ -88,7 +96,12 @@ const Blogs = ({
   const showAllCategories = () => {
     return categories.map((c, i) => (
       <Link key={i} href={`/categories/${c.slug}`}>
-        <a className="btn btn-primary m-1">{c.name}</a>
+        <a
+          className="btn btn-rounded fw-bold hover-shadow m-1"
+          style={{ color: '#1EAE98' }}
+        >
+          {c.name}
+        </a>
       </Link>
     ));
   };
@@ -96,7 +109,12 @@ const Blogs = ({
   const showAllTags = () => {
     return tags.map((t, i) => (
       <Link key={i} href={`/tags/${t.slug}`}>
-        <a className="btn btn-outline-primary m-1">{t.name}</a>
+        <a
+          className="btn btn-rounded fw-bold hover-shadow m-1"
+          style={{ color: '#FB743E' }}
+        >
+          {t.name}
+        </a>
       </Link>
     ));
   };
@@ -105,7 +123,6 @@ const Blogs = ({
     return blogs.map((blog, index) => (
       <article key={index}>
         <Card blog={blog} />
-        <hr />
       </article>
     ));
   };
@@ -122,28 +139,31 @@ const Blogs = ({
     <Fragment>
       {head()}
       <Layout>
-        <main>
+        <main className="m-4">
           <div className="container-fluid">
             <header>
-              <div className="col-md-12 pt-4">
-                <h1 className="fs-3 fw-bold text-center">Latests Blogs</h1>
+              <div className="col-md-12 pt-3 pb-3">
+                <h1 className="fw-bold text-center text-warning">
+                  Newest Blogs
+                </h1>
               </div>
               <section>
-                <div className="text-center">
+                <div className="text-center pb-5">
                   {showAllCategories()}
+                  <br />
                   <br />
                   {showAllTags()}
                 </div>
               </section>
             </header>
           </div>
-          <div className="container-fluid ps-4 pe-4">
+          <div className="container-fluid">
             <div className="row">
               <div className="col-md-12">
                 {showAllBlogs()}
                 {showLoadedBlogs()}
               </div>
-              <div className="text-center pt-5 pb-5">{loadMoreButton()}</div>
+              <div className="text-center pt-4 pb-5">{loadMoreButton()}</div>
             </div>
           </div>
         </main>

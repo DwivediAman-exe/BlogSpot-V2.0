@@ -12,7 +12,7 @@ Router.events.on('routeChangeError', () => NProgress.done());
 const Header = () => {
   return (
     <nav
-      className="navbar navbar-expand-lg sticky-top navbar-dark bg-info shadow-1-strong mb-4"
+      className="navbar navbar-expand-lg sticky-top navbar-dark bg-info shadow-2-strong mb-4"
       style={{ letterSpacing: '0.1rem' }}
     >
       <Link href="/">
@@ -36,7 +36,9 @@ const Header = () => {
         {/*  Left links */}
         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
           <Link href="/blogs">
-            <a className="text-light fs-5 ms-4 pt-1 fw-lighter">Blogs</a>
+            <a className="text-light fs-5 ms-4 pt-1 fw-lighter">
+              <i class="fas fa-rss" /> Blogs
+            </a>
           </Link>
         </ul>
         {/* right links */}

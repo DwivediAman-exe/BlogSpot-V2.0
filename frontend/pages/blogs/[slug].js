@@ -3,8 +3,9 @@ import Link from 'next/link';
 import renderHTML from 'react-render-html';
 import moment from 'moment';
 import Layout from '../../components/Layout';
-import { Fragment, useState } from 'react';
-import { singleBlog } from '../../actions/blog';
+import { Fragment, useState, useEffect } from 'react';
+import { singleBlog, listRelated } from '../../actions/blog';
+import SmallCard from '../../components/blog/SmallCard';
 
 const SingleBlog = ({ blog, query }) => {
   const head = () => (
@@ -48,10 +49,31 @@ const SingleBlog = ({ blog, query }) => {
     </Head>
   );
 
+  const [related, setRelated] = useState([]);
+
+  const loadRelated = () => {
+    listRelated({ blog }).then((data) => {
+      if (data.error) {
+        console.log(data.error);
+      } else {
+        setRelated(data);
+      }
+    });
+  };
+
+  useEffect(() => {
+    loadRelated();
+  }, []);
+
   const showBlogCategories = (blog) => {
     return blog.categories.map((c, i) => (
       <Link key={i} href={`/categories/${c.slug}`}>
-        <a className="btn btn-primary btn-sm m-1">{c.name}</a>
+        <a
+          className="btn btn-lg btn-rounded fw-bold hover-shadow m-1"
+          style={{ color: '#1EAE98' }}
+        >
+          {c.name}
+        </a>
       </Link>
     ));
   };
@@ -59,9 +81,26 @@ const SingleBlog = ({ blog, query }) => {
   const showBlogTags = (blog) => {
     return blog.tags.map((t, i) => (
       <Link key={i} href={`/tags/${t.slug}`}>
-        <a className="btn btn-outline-primary btn-sm m-1">{t.name}</a>
+        <a
+          className="btn btn-lg btn-rounded fw-bold hover-shadow m-1"
+          style={{ color: '#FB743E' }}
+        >
+          {t.name}
+        </a>
       </Link>
     ));
+  };
+
+  const showRelatedBlogs = () => {
+    return related.map((blog, index) => {
+      return (
+        <div className="col-md-4" key={index}>
+          <article className="ms-5 me-5">
+            <SmallCard blog={blog} />
+          </article>
+        </div>
+      );
+    });
   };
 
   return (
@@ -70,37 +109,52 @@ const SingleBlog = ({ blog, query }) => {
       <Layout>
         <main>
           <article>
-            <div className="container">
+            <div className="container ps-5 pe-5">
               <section>
                 <div className="row">
-                  <h1>{blog.title}</h1>
+                  <h1 className="text-black  mt-4 mb-3">{blog.title}</h1>
                   <img
+                    className="img img-fluid"
                     src={`${process.env.NEXT_PUBLIC_API_DEVELOPMENT}/blog/photo/${blog.slug}`}
                     alt={blog.title}
-                    className="img img-fluid"
                     style={{
-                      width: '100',
-                      maxHeight: '500px',
+                      height: '400px',
+                      width: '96%',
+                      maxHeight: '400px',
                       objectFit: 'cover',
+                      margin: 'auto 0%',
+                      objectFit: 'fill',
+                      borderRadius: '30px',
                     }}
                   />
+                  <div
+                    className="fw-normal mt-3 mb-1"
+                    style={{ color: '#5E8B7E' }}
+                  >
+                    <p className="float-end">
+                      {' '}
+                      Written by {blog.postedBy.username} | Published{' '}
+                      {moment(blog.updatedAt).fromNow()}
+                    </p>
+                  </div>
                 </div>
               </section>
               <section>
-                <p className="p-2">
-                  Written by {blog.postedBy.name} | Published{' '}
-                  {moment(blog.updatedAt).fromNow()}
-                </p>
-                <div>
+                <div className="mb-3 text-center">
                   {showBlogCategories(blog)}
                   {showBlogTags(blog)}
                 </div>
               </section>
             </div>
-            <div className="container">
+            <div className="container ps-5 pe-5 mb-5">
               <section className="col-md-12">{renderHTML(blog.body)}</section>
             </div>
-            <div>realetd blogs</div>
+            <div className="row">
+              <h2 className="text-warning text-center mt-2 mb-5 pb-3">
+                Related Blogs
+              </h2>
+              {showRelatedBlogs()}
+            </div>
             <div>coments show</div>
           </article>
         </main>
