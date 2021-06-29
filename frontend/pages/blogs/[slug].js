@@ -39,7 +39,7 @@ const SingleBlog = ({ blog, query }) => {
       />
       <meta
         property="og:image:secure_url"
-        ccontent={`${process.env.NEXT_PUBLIC_API_DEVELOPMENT}/blog/photo/${blog.slug}`}
+        content={`${process.env.NEXT_PUBLIC_API_DEVELOPMENT}/blog/photo/${blog.slug}`}
       />
       <meta property="og:image:type" content="image/jpg" />
       <meta
