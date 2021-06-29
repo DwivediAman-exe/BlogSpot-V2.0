@@ -208,10 +208,10 @@ exports.remove = async (req, res) => {
   });
 };
 
-exports.update = async (req, res) => {
+exports.update = (req, res) => {
   const slug = req.params.slug.toLowerCase();
 
-  await Blog.findOne({ slug }).exec((err, oldBlog) => {
+  Blog.findOne({ slug }).exec((err, oldBlog) => {
     if (err) {
       return res.status(400).json({
         error: errorHandler(err),
