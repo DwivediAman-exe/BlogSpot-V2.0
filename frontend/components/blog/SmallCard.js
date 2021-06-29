@@ -11,20 +11,22 @@ const SmallCard = ({ blog }) => {
       <section>
         <div className="fs-4 ps-3 pb-2">
           <Link href={`blogs/${blog.slug}`}>
-            <a className="card-title">{blog.title}</a>
+            <a className="card-title text-dark text-decoration-underline">
+              {blog.title}
+            </a>
           </Link>
         </div>
         <Link href={`blogs/${blog.slug}`}>
           <a className="ps-3">
             <img
-              className="img img-fluid shadow-1-strong  img-thumbnail rounded"
+              className="img img-fluid shadow-1-strong   rounded"
               src={`${process.env.NEXT_PUBLIC_API_DEVELOPMENT}/blog/photo/${blog.slug}`}
               alt={blog.title}
               style={{
                 height: '150px',
-                width: '150px',
+                width: '90%',
                 maxHeight: '150px',
-                maxWidth: '150px',
+                maxWidth: '90%',
                 objectFit: 'cover',
               }}
             />
@@ -36,9 +38,9 @@ const SmallCard = ({ blog }) => {
       </div>
       <div className="card-footer">
         <p className="">
-          Published {moment(blog.updatedAt).fromNow()},{' '}
+          Published {moment(blog.updatedAt).fromNow()}
           <Link href={`/`}>
-            <a>@{blog.postedBy.username}</a>
+            <a className="float-end">- @{blog.postedBy.username}</a>
           </Link>
         </p>
       </div>

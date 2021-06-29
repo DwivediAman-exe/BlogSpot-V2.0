@@ -38,6 +38,14 @@ const AdminIndex = () => {
                     Create Blog
                   </a>
                 </Link>
+                <Link href="/admin/crud/blogs">
+                  <a
+                    className="list-group-item list-group-item-action list-group-item-primary"
+                    aria-current="true"
+                  >
+                    Update or Delete Blog
+                  </a>
+                </Link>
               </div>
             </div>
             <div className="col-md-8">right</div>

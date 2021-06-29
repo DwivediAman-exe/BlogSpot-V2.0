@@ -74,3 +74,56 @@ export const listRelated = async (blog) => {
     return console.error(err.message);
   }
 };
+
+export const list = async () => {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_DEVELOPMENT}/blogs`,
+      {
+        method: 'GET',
+      }
+    );
+    return await response.json();
+  } catch (err) {
+    return console.log(err);
+  }
+};
+
+export const removeBlog = async (slug, token) => {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_DEVELOPMENT}/blog/${slug}`,
+      {
+        method: 'DELETE',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return await response.json();
+  } catch (err) {
+    return console.error(err.message);
+  }
+};
+
+export const updateBlog = async (blog, token, slug) => {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_DEVELOPMENT}/blog/${slug}`,
+      {
+        method: 'PUT',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: blog,
+      }
+    );
+    return await response.json();
+  } catch (err) {
+    return console.error(err.message);
+  }
+};
