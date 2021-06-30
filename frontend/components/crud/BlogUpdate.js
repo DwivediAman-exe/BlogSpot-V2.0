@@ -16,7 +16,7 @@ const BlogUpdate = ({ router }) => {
   const [values, setValues] = useState({
     error: '',
     success: '',
-    formData: '',
+    formData: typeof window !== 'undefined' && new FormData(),
     title: '',
   });
 
