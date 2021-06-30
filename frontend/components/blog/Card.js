@@ -31,7 +31,7 @@ const Card = ({ blog }) => {
 
   return (
     <div
-      className="pb-4 pt-4 ps-3 pe-3 mt-3 mb-4 card hover-shadow"
+      className="pb-4 pt-4 ps-4 pe-3 mt-3 mb-4 card hover-shadow"
       style={{
         borderRadius: '20px',
         height: '100%',
@@ -59,7 +59,7 @@ const Card = ({ blog }) => {
           {showBlogCategories(blog)}
           {showBlogTags(blog)}
           <small
-            className="fw-strong float-end mt-2 mb-1 fst-italic"
+            className="fw-strong float-end mt-2 mb-1 pe-4 fst-italic"
             style={{ color: '#A7BBC7' }}
           >
             - categories and tags
@@ -87,7 +87,7 @@ const Card = ({ blog }) => {
           <section className="pt-3">
             <div>{renderHTML(blog.excerpt)}</div>
             <Link href={`/blogs/${blog.slug}`}>
-              <a className="text-info float-end fw-bold pe-5">Read more...</a>
+              <a className="text-info float-end fw-bold pe-4">Read more...</a>
             </Link>
           </section>
         </div>

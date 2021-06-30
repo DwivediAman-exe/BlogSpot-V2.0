@@ -323,7 +323,9 @@ exports.listSearch = (req, res) => {
         }
         res.json(blogs);
       }
-    ).select('-photo -body');
+    )
+      .select('-photo -body')
+      .populate('postedBy', '_id username');
   }
 };
 

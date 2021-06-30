@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-fetch';
+import queryString from 'query-string';
 
 export const createBlog = async (data, token) => {
   try {
@@ -124,5 +125,22 @@ export const updateBlog = async (blog, token, slug) => {
     return await response.json();
   } catch (err) {
     return console.error(err.message);
+  }
+};
+
+export const listSearch = async (params) => {
+  console.log('search params', params);
+  let query = queryString.stringify(params);
+  console.log('query params', query);
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_DEVELOPMENT}/blogs/search?${query}`,
+      {
+        method: 'GET',
+      }
+    );
+    return await response.json();
+  } catch (err) {
+    return console.log(err);
   }
 };
