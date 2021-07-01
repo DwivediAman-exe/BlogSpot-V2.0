@@ -6,6 +6,7 @@ import Layout from '../../components/Layout';
 import { Fragment, useState, useEffect } from 'react';
 import { singleBlog, listRelated } from '../../actions/blog';
 import SmallCard from '../../components/blog/SmallCard';
+import DisqusThread from '../../components/DisqusThread';
 
 const SingleBlog = ({ blog, query }) => {
   const head = () => (
@@ -103,6 +104,18 @@ const SingleBlog = ({ blog, query }) => {
     });
   };
 
+  const showComments = () => {
+    return (
+      <div>
+        <DisqusThread
+          id={blog.id}
+          title={blog.title}
+          path={`/blog/${blog.slug}`}
+        />
+      </div>
+    );
+  };
+
   return (
     <Fragment>
       {head()}
@@ -152,12 +165,17 @@ const SingleBlog = ({ blog, query }) => {
               <section className="col-md-12">{renderHTML(blog.body)}</section>
             </div>
             <div className="row">
-              <h2 className="text-warning text-center mt-2 mb-5 pb-3">
+              <h2 className="text-warning text-decoration-underline text-center mt-2 mb-5 pb-3">
                 Related Blogs
               </h2>
               {showRelatedBlogs()}
             </div>
-            <div>coments show</div>
+            <div className="container-fluid ms-3 me-3 ps-4 pe-4 mt-4 mb-5">
+              <h2 className="text-warning text-decoration-underline text-center mt-2 mb-5 pb-3">
+                Related Comments
+              </h2>
+              {showComments()}
+            </div>
           </article>
         </main>
       </Layout>
