@@ -1,19 +1,24 @@
 import fetch from 'isomorphic-fetch';
 import queryString from 'query-string';
+import { isAuth, handleResponse } from './auth';
 
 export const createBlog = async (data, token) => {
   try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_DEVELOPMENT}/blog`,
-      {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        body: data,
-      }
-    );
+    let createBlogEndpoint;
+
+    if (isAuth() && isAuth().role === 1) {
+      createBlogEndpoint = `${process.env.NEXT_PUBLIC_API_DEVELOPMENT}/blog`;
+    } else if (isAuth() && isAuth().role === 0) {
+      createBlogEndpoint = `${process.env.NEXT_PUBLIC_API_DEVELOPMENT}/user/blog`;
+    }
+    const response = await fetch(`${createBlogEndpoint}`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: data,
+    });
     return await response.json();
   } catch (err) {
     return console.error(err.message);
@@ -76,14 +81,18 @@ export const listRelated = async (blog) => {
   }
 };
 
-export const list = async () => {
+export const list = async (username) => {
   try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_DEVELOPMENT}/blogs`,
-      {
-        method: 'GET',
-      }
-    );
+    let listBlogsEndpoint;
+
+    if (username) {
+      listBlogsEndpoint = `${process.env.NEXT_PUBLIC_API_DEVELOPMENT}/${username}/blogs`;
+    } else {
+      listBlogsEndpoint = `${process.env.NEXT_PUBLIC_API_DEVELOPMENT}/blogs`;
+    }
+    const response = await fetch(`${listBlogsEndpoint}`, {
+      method: 'GET',
+    });
     return await response.json();
   } catch (err) {
     return console.log(err);
@@ -92,17 +101,21 @@ export const list = async () => {
 
 export const removeBlog = async (slug, token) => {
   try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_DEVELOPMENT}/blog/${slug}`,
-      {
-        method: 'DELETE',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    let deleteBlogEndpoint;
+
+    if (isAuth() && isAuth().role === 1) {
+      deleteBlogEndpoint = `${process.env.NEXT_PUBLIC_API_DEVELOPMENT}/blog/${slug}`;
+    } else if (isAuth() && isAuth().role === 0) {
+      deleteBlogEndpoint = `${process.env.NEXT_PUBLIC_API_DEVELOPMENT}/user/blog/${slug}`;
+    }
+    const response = await fetch(`${deleteBlogEndpoint}`, {
+      method: 'DELETE',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return await response.json();
   } catch (err) {
     return console.error(err.message);
@@ -111,17 +124,21 @@ export const removeBlog = async (slug, token) => {
 
 export const updateBlog = async (blog, token, slug) => {
   try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_DEVELOPMENT}/blog/${slug}`,
-      {
-        method: 'PUT',
-        headers: {
-          Accept: 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        body: blog,
-      }
-    );
+    let updateBlogEndpoint;
+
+    if (isAuth() && isAuth().role === 1) {
+      updateBlogEndpoint = `${process.env.NEXT_PUBLIC_API_DEVELOPMENT}/blog/${slug}`;
+    } else if (isAuth() && isAuth().role === 0) {
+      updateBlogEndpoint = `${process.env.NEXT_PUBLIC_API_DEVELOPMENT}/user/blog/${slug}`;
+    }
+    const response = await fetch(`${updateBlogEndpoint}`, {
+      method: 'PUT',
+      headers: {
+        Accept: 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: blog,
+    });
     return await response.json();
   } catch (err) {
     return console.error(err.message);

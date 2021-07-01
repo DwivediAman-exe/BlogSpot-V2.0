@@ -5,7 +5,7 @@ import { getCookie, isAuth } from '../../actions/auth';
 import { list, removeBlog } from '../../actions/blog';
 import moment from 'moment';
 
-const BlogRead = () => {
+const BlogRead = ({ username }) => {
   const [blogs, setBlogs] = useState([]);
   const [message, setMessage] = useState('');
 
@@ -17,7 +17,7 @@ const BlogRead = () => {
 
   const loadBlogs = async () => {
     try {
-      const data = await list();
+      const data = await list(username);
       setBlogs(data);
     } catch (err) {
       console.log(err);
@@ -47,7 +47,7 @@ const BlogRead = () => {
   const showUpdateButton = (blog) => {
     if (isAuth() && isAuth().role === 0) {
       return (
-        <Link href={`/user/crud/blog/${blog.slug}`}>
+        <Link href={`/user/crud/${blog.slug}`}>
           <a className="btn btn-sm btn-secondary ms-2 lh-lg">Update Blog</a>
         </Link>
       );

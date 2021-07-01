@@ -38,8 +38,13 @@ const Header = () => {
           {/*  Left links */}
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <Link href="/blogs">
-              <a className="text-light fs-5 ms-4 pt-1 fw-lighter">
+              <a className="text-light fs-5 ms-4 me-4 pt-1 fw-lighter">
                 <i class="fas fa-rss" /> Blogs
+              </a>
+            </Link>
+            <Link href="/user/crud/blog">
+              <a className="text-light fs-5 pt-1 ps-3 fw-lighter">
+                <i class="fas fa-feather-alt"></i> Write Blog
               </a>
             </Link>
           </ul>

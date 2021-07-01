@@ -1,12 +1,12 @@
 import Layout from '../../../components/Layout';
 import Link from 'next/link';
-import Admin from '../../../components/auth/Admin';
+import Private from '../../../components/auth/Private';
 import BlogCreate from '../../../components/crud/BlogCreate';
 
-const Blog = () => {
+const CreateBlog = () => {
   return (
     <Layout>
-      <Admin>
+      <Private>
         <div className="container-fluid">
           <div className="m-4 pt-4 pb-4">
             <h2 class="text-center text-warning">Create a Blog</h2>
@@ -17,9 +17,9 @@ const Blog = () => {
             </div>
           </div>
         </div>
-      </Admin>
+      </Private>
     </Layout>
   );
 };
 
-export default Blog;
+export default CreateBlog;
