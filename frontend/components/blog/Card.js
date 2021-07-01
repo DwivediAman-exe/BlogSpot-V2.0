@@ -31,7 +31,7 @@ const Card = ({ blog }) => {
 
   return (
     <div
-      className="pb-4 pt-4 ps-4 pe-3 mt-3 mb-4 card hover-shadow"
+      className="pb-4 pt-4 ps-4 pe-3 mt-3 mb-4 card shadow-1-strong"
       style={{
         borderRadius: '20px',
         height: '100%',
@@ -50,8 +50,10 @@ const Card = ({ blog }) => {
       <section>
         <p className="fst-italic" style={{ color: '#766161' }}>
           <small>Written by </small>
-          {blog.postedBy.username} |{' '}
-          <small>Published {moment(blog.updatedAt).fromNow()}</small>
+          <Link href={`/profile/${blog.postedBy.username}`}>
+            <a className="text-info">{blog.postedBy.username}</a>
+          </Link>{' '}
+          | <small>Published {moment(blog.updatedAt).fromNow()}</small>
         </p>
       </section>
       <section>

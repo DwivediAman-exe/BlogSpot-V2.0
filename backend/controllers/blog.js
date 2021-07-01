@@ -325,7 +325,7 @@ exports.listSearch = (req, res) => {
       }
     )
       .select('-photo -body')
-      .populate('postedBy', '_id username');
+      .populate('postedBy', '_id name username');
   }
 };
 

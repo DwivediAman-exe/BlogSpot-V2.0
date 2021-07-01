@@ -133,8 +133,10 @@ const SingleBlog = ({ blog, query }) => {
                   >
                     <p className="float-end">
                       {' '}
-                      Written by {blog.postedBy.username} | Published{' '}
-                      {moment(blog.updatedAt).fromNow()}
+                      <Link href={`/profile/${blog.postedBy.username}`}>
+                        <a className="text-info">{blog.postedBy.username}</a>
+                      </Link>{' '}
+                      | Published {moment(blog.updatedAt).fromNow()}
                     </p>
                   </div>
                 </div>

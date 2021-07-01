@@ -1,6 +1,19 @@
 import fetch from 'isomorphic-fetch';
 import cookie from 'js-cookie';
 
+export const handleResponse = (response) => {
+  if (response.status === 401) {
+    signout(() => {
+      Router.push({
+        pathname: '/signin',
+        query: {
+          message: 'Your session is expired. Please signin',
+        },
+      });
+    });
+  }
+};
+
 // signup action
 export const signup = async (user) => {
   try {
@@ -113,6 +126,17 @@ export const isAuth = () => {
       } else {
         return false;
       }
+    }
+  }
+};
+
+export const updateUser = (user, next) => {
+  if (process.browser) {
+    if (localStorage.getItem('user')) {
+      let auth = JSON.parse(localStorage.getItem('user'));
+      auth = user;
+      localStorage.setItem('user', JSON.stringify(auth));
+      next();
     }
   }
 };

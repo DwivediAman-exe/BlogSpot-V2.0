@@ -14,6 +14,14 @@ const AdminIndex = () => {
           <div className="row">
             <div className="col-md-3 ps-2 pe-2 ms-5 me-5">
               <div className="list-group">
+                <Link href="/user/update">
+                  <a
+                    className="list-group-item list-group-item-action list-group-item-primary"
+                    aria-current="true"
+                  >
+                    Update Profile
+                  </a>
+                </Link>
                 <Link href="/admin/crud/category-tag">
                   <a
                     className="list-group-item list-group-item-action list-group-item-primary"
