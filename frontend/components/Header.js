@@ -18,8 +18,8 @@ const Header = () => {
         style={{ letterSpacing: '0.1rem' }}
       >
         <Link href="/">
-          <a className="navbar-brand fs-2 ms-4 me-4 fw-bold">
-            <i class="fas fa-mail-bulk ms-2 me-3 fs-2 "></i>
+          <a className="navbar-brand fs-2 ms-2 me-3 fw-bold pe-1">
+            <i class="fas fa-mail-bulk ms-2 me-2 fs-2 "></i>
             {process.env.NEXT_PUBLIC_APP_NAME}
           </a>
         </Link>
@@ -38,7 +38,7 @@ const Header = () => {
           {/*  Left links */}
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <Link href="/blogs">
-              <a className="text-light fs-5 ms-4 me-4 pt-1 fw-lighter">
+              <a className="text-light fs-5 ps-3 me-4 pt-1 fw-lighter">
                 <i class="fas fa-rss" /> Social Feed
               </a>
             </Link>
@@ -69,7 +69,7 @@ const Header = () => {
 						btn-rounded me-4 ps-4 pe-4 text-dark mb-1 mt-1"
                     style={{ letterSpacing: '0.07rem' }}
                   >
-                    Sign Up for free
+                    SignUp for free
                   </button>
                 </Link>
               </Fragment>
@@ -81,7 +81,7 @@ const Header = () => {
                     <button
                       type="button"
                       className="btn fw-normal
-						btn-rounded me-3 ps-4 pe-4 text-dark mb-1 mt-1 ms-4"
+						btn-rounded me-2 ps-4 pe-4 text-dark mb-1 mt-1 ms-3"
                       style={{ letterSpacing: '0.07rem' }}
                     >
                       {`${isAuth().name}`}'s Dashboard
@@ -92,7 +92,7 @@ const Header = () => {
                     <button
                       type="button"
                       className="btn fw-normal
-						btn-rounded me-3 ps-4 pe-4 text-dark mb-1 mt-1 ms-4"
+						btn-rounded me-2 ps-4 pe-4 text-dark mb-1 mt-1 ms-4"
                       style={{ letterSpacing: '0.07rem' }}
                     >
                       {`${isAuth().name}`}'s Dashboard
@@ -102,7 +102,7 @@ const Header = () => {
 
                 <button
                   type="button"
-                  className="btn btn-rounded fw-light text-dark me-4 ms-4 mt-1 mb-1"
+                  className="btn btn-rounded fw-light text-dark me-4 ms-2 mt-1 mb-1"
                   style={{ letterSpacing: '0.07rem' }}
                   onClick={() => signout(() => Router.replace(`/signin`))}
                 >
@@ -110,6 +110,14 @@ const Header = () => {
                 </button>
               </Fragment>
             )}
+            <Link href="/contact">
+              <a className="">
+                <i
+                  class="fab fa-dev fs-2 pe-3 pt-1"
+                  style={{ color: '#CDF0EA' }}
+                ></i>
+              </a>
+            </Link>
           </div>
         </div>
       </nav>

@@ -69,6 +69,7 @@ const Search = () => {
             aria-label="Search"
             placeholder="Search Blogs by Keywords in title or content..."
             onChange={handleChange}
+            style={{ borderRadius: '12px' }}
           />
         </div>
         <div className="col-md-3">
