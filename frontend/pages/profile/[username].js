@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Layout from '../../components/Layout';
 import { userPublicProfile } from '../../actions/user';
 import moment from 'moment';
+import ContactForm from '../../components/form/ContactForm';
 import { Fragment } from 'react';
 
 const UserProfile = ({ user, blogs, query }) => {
@@ -128,7 +129,7 @@ const UserProfile = ({ user, blogs, query }) => {
                 style={{ backgroundColor: '#CCF2F4', borderRadius: '20px' }}
               >
                 <h5 className="ps-3 pb-3 pt-3">Message {user.name}</h5>
-                <p>formmmm</p>
+                <ContactForm authorEmail={user.email} />
               </div>
             </div>
           </div>
