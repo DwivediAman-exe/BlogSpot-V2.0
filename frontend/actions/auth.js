@@ -1,16 +1,20 @@
 import fetch from 'isomorphic-fetch';
 import cookie from 'js-cookie';
+import Router from 'next/router';
 
+// jwt expire
 export const handleResponse = (response) => {
   if (response.status === 401) {
     signout(() => {
       Router.push({
         pathname: '/signin',
         query: {
-          message: 'Your session is expired. Please signin',
+          message: 'Your session has expired. Please signin',
         },
       });
     });
+  } else {
+    return;
   }
 };
 

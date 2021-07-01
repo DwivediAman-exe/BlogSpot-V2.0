@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-fetch';
+import { handleResponse } from './auth';
 
 export const createCategory = async (category, token) => {
   try {
@@ -14,6 +15,7 @@ export const createCategory = async (category, token) => {
         body: JSON.stringify(category),
       }
     );
+    handleResponse(response);
     return await response.json();
   } catch (err) {
     return console.error(err.message);
@@ -61,6 +63,7 @@ export const removeCategory = async (slug, token) => {
         },
       }
     );
+    handleResponse(response);
     return await response.json();
   } catch (err) {
     return console.error(err.message);

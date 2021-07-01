@@ -14,7 +14,7 @@ const Header = () => {
   return (
     <Fragment>
       <nav
-        className="navbar navbar-expand-lg sticky-top navbar-dark bg-info shadow-2-strong mb-4"
+        className="navbar navbar-expand-lg sticky-top navbar-dark bg-info shadow-1-strong mb-4"
         style={{ letterSpacing: '0.1rem' }}
       >
         <Link href="/">
@@ -39,7 +39,7 @@ const Header = () => {
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <Link href="/blogs">
               <a className="text-light fs-5 ms-4 me-4 pt-1 fw-lighter">
-                <i class="fas fa-rss" /> Blogs
+                <i class="fas fa-rss" /> Social Feed
               </a>
             </Link>
             <Link href="/user/crud/blog">

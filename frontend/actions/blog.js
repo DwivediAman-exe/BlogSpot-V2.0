@@ -19,6 +19,7 @@ export const createBlog = async (data, token) => {
       },
       body: data,
     });
+    handleResponse(response);
     return await response.json();
   } catch (err) {
     return console.error(err.message);
@@ -116,6 +117,7 @@ export const removeBlog = async (slug, token) => {
         Authorization: `Bearer ${token}`,
       },
     });
+    handleResponse(response);
     return await response.json();
   } catch (err) {
     return console.error(err.message);
@@ -139,6 +141,7 @@ export const updateBlog = async (blog, token, slug) => {
       },
       body: blog,
     });
+    handleResponse(response);
     return await response.json();
   } catch (err) {
     return console.error(err.message);
