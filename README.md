@@ -53,6 +53,8 @@
 > Refractor the bad code and make components reusable.
 
 
-# App Demo
+# App Images
+
+<img src="https://github.com/born69confused/BlogSpot-V2.0/blob/main/pics/1.png?raw=true"/>
 
 
