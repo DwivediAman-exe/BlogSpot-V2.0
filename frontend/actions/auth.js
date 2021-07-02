@@ -144,3 +144,41 @@ export const updateUser = (user, next) => {
     }
   }
 };
+
+export const forgotPassword = async (email) => {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_DEVELOPMENT}/forgot-password`,
+      {
+        method: 'PUT',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(email),
+      }
+    );
+    return await response.json();
+  } catch (err) {
+    return console.log(err);
+  }
+};
+
+export const resetPassword = async (resetInfo) => {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_DEVELOPMENT}/reset-password`,
+      {
+        method: 'PUT',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(resetInfo),
+      }
+    );
+    return await response.json();
+  } catch (err) {
+    return console.log(err);
+  }
+};

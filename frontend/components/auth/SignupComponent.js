@@ -1,6 +1,7 @@
 import Router from 'next/router';
 import { Fragment, useEffect, useState } from 'react';
 import { signup, isAuth } from '../../actions/auth';
+import Link from 'next/link';
 
 const Signupcomponent = () => {
   const initialValues = {
@@ -141,6 +142,12 @@ const Signupcomponent = () => {
       {showLoading()}
       {showMessage()}
       {showForm && signupForm()}
+      <br />
+      <Link href="/auth/password/forgot">
+        <a className="fs-6 float-end text-danger">
+          Need help? Reset password...
+        </a>
+      </Link>
     </Fragment>
   );
 };

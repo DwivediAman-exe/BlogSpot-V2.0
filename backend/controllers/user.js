@@ -58,13 +58,35 @@ exports.update = (req, res) => {
       });
     }
     let user = req.profile;
-    user = _.extend(user, fields);
+    let existingRole = user.role;
+    let existingEmail = user.email;
+
+    if (fields && fields.username && fields.username.length > 12) {
+      return res.status(400).json({
+        error: 'Username should be less than 12 characters long',
+      });
+    }
+
+    if (fields.username) {
+      fields.username = slugify(fields.username).toLowerCase();
+    }
 
     if (fields.password && fields.password.length < 6) {
       return res.status(400).json({
         error: 'Password should be min 6 characters long',
       });
     }
+
+    if (fields.password && fields.password.length < 6) {
+      return res.status(400).json({
+        error: 'Password should be min 6 characters long',
+      });
+    }
+
+    user = _.extend(user, fields);
+    // user's existing role and email - dont update - keep it same
+    user.role = existingRole;
+    user.email = existingEmail;
 
     if (files.photo) {
       if (files.photo.size > 10000000) {
