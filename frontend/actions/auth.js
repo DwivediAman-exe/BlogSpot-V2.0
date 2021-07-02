@@ -18,6 +18,27 @@ export const handleResponse = (response) => {
   }
 };
 
+// pre-signup action
+// signup action
+export const preSignup = async (user) => {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_DEVELOPMENT}/pre-signup`,
+      {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(user),
+      }
+    );
+    return await response.json();
+  } catch (err) {
+    return console.error(err.message);
+  }
+};
+
 // signup action
 export const signup = async (user) => {
   try {
@@ -175,6 +196,25 @@ export const resetPassword = async (resetInfo) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(resetInfo),
+      }
+    );
+    return await response.json();
+  } catch (err) {
+    return console.log(err);
+  }
+};
+
+export const loginWithGoogle = async (user) => {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_DEVELOPMENT}/google-login`,
+      {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(user),
       }
     );
     return await response.json();

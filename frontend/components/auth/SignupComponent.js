@@ -1,7 +1,8 @@
 import Router from 'next/router';
 import { Fragment, useEffect, useState } from 'react';
-import { signup, isAuth } from '../../actions/auth';
+import { signup, isAuth, preSignup } from '../../actions/auth';
 import Link from 'next/link';
+import LoginGoogle from './LoginGoogle';
 
 const Signupcomponent = () => {
   const initialValues = {
@@ -27,7 +28,7 @@ const Signupcomponent = () => {
     // console.table({ values });
     setValues({ ...values, loading: true, error: false });
     const user = { name, email, password };
-    signup(user).then((data) => {
+    preSignup(user).then((data) => {
       if (data.error) {
         setValues({ ...values, error: data.error, loading: false });
       } else {
@@ -142,7 +143,8 @@ const Signupcomponent = () => {
       {showLoading()}
       {showMessage()}
       {showForm && signupForm()}
-      <br />
+      <p className="mt-1 mb-3 fw-bold">OR</p>
+      <LoginGoogle />
       <Link href="/auth/password/forgot">
         <a className="fs-6 float-end text-danger">
           Need help? Reset password...

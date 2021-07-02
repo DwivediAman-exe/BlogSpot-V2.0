@@ -2,6 +2,7 @@ import { Fragment, useState, useEffect } from 'react';
 import { signin, authenticate, isAuth } from '../../actions/auth';
 import Router from 'next/router';
 import Link from 'next/link';
+import LoginGoogle from './LoginGoogle';
 
 const SigninComponent = () => {
   const initialValues = {
@@ -123,7 +124,8 @@ const SigninComponent = () => {
       {showLoading()}
       {showMessage()}
       {showForm && signinForm()}
-      <br />
+      <p className="mt-1 mb-3 fw-bold">OR</p>
+      <LoginGoogle />
       <Link href="/auth/password/forgot">
         <a className="fs-6 float-end text-danger">
           Need help? Reset password...
