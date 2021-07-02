@@ -55,6 +55,22 @@
 
 # App Images
 
+### Home Screeen
 <img src="https://github.com/born69confused/BlogSpot-V2.0/blob/main/pics/1.png?raw=true"/>
+
+### Feed Screeen
+<img src="https://github.com/born69confused/BlogSpot-V2.0/blob/main/pics/2.png?raw=true"/>
+
+### User dashboard
+<img src="https://github.com/born69confused/BlogSpot-V2.0/blob/main/pics/6.png?raw=true" />
+
+### Creating Blogs
+<img src="https://github.com/born69confused/BlogSpot-V2.0/blob/main/pics/3.png?raw=true" />
+
+### Realted Blogs and Disqus
+<img src="https://github.com/born69confused/BlogSpot-V2.0/blob/main/pics/4.png?raw=true"/>
+
+### Update Delete
+<img src="https://github.com/born69confused/BlogSpot-V2.0/blob/main/pics/5.png?raw=true" />
 
 
