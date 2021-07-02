@@ -147,7 +147,10 @@ const SingleBlog = ({ blog, query }) => {
                     <p className="float-end">
                       {' '}
                       <Link href={`/profile/${blog.postedBy.username}`}>
-                        <a className="text-info">{blog.postedBy.username}</a>
+                        <a className="text-info">
+                          <i class="fas fa-user-edit fs-6"></i>{' '}
+                          {blog.postedBy.username}
+                        </a>
                       </Link>{' '}
                       | Published {moment(blog.updatedAt).fromNow()}
                     </p>
@@ -166,13 +169,13 @@ const SingleBlog = ({ blog, query }) => {
             </div>
             <div className="row">
               <h2 className="text-warning text-decoration-underline text-center mt-2 mb-5 pb-3">
-                Related Blogs
+                <i class="fas fa-rss pe-2"></i>Related Blogs
               </h2>
               {showRelatedBlogs()}
             </div>
             <div className="container-fluid ms-3 me-3 ps-4 pe-4 mt-4 mb-5">
               <h2 className="text-warning text-decoration-underline text-center mt-2 mb-5 pb-3">
-                Related Comments
+                <i class="far fa-comment-alt pe-2"></i>Related Comments
               </h2>
               {showComments()}
             </div>

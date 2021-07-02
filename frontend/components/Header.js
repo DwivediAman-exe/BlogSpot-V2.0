@@ -59,7 +59,7 @@ const Header = () => {
                     className="btn btn-rounded text-dark me-4 ms-4 mt-1 mb-1"
                     style={{ letterSpacing: '0.07rem' }}
                   >
-                    <a>LogIn</a>
+                    <i class="fas fa-user-check"></i> <a>LogIn</a>
                   </button>
                 </Link>
                 <Link href="/signup">
@@ -69,7 +69,7 @@ const Header = () => {
 						btn-rounded me-4 ps-4 pe-4 text-dark mb-1 mt-1"
                     style={{ letterSpacing: '0.07rem' }}
                   >
-                    SignUp for free
+                    <i class="fas fa-user-plus"></i> SignUp for free
                   </button>
                 </Link>
               </Fragment>
@@ -84,7 +84,8 @@ const Header = () => {
 						btn-rounded me-2 ps-4 pe-4 text-dark mb-1 mt-1 ms-3"
                       style={{ letterSpacing: '0.07rem' }}
                     >
-                      {`${isAuth().name}`}'s Dashboard
+                      <i class="fas fa-user-tie fs-6 pe-2"></i>
+                      {`${isAuth().name}`}
                     </button>
                   </Link>
                 ) : (
@@ -95,7 +96,8 @@ const Header = () => {
 						btn-rounded me-2 ps-4 pe-4 text-dark mb-1 mt-1 ms-4"
                       style={{ letterSpacing: '0.07rem' }}
                     >
-                      {`${isAuth().name}`}'s Dashboard
+                      <i class="fas fa-user-tie fs-6 pe-2"></i>
+                      {`${isAuth().name}`}
                     </button>
                   </Link>
                 )}
@@ -106,7 +108,9 @@ const Header = () => {
                   style={{ letterSpacing: '0.07rem' }}
                   onClick={() => signout(() => Router.replace(`/signin`))}
                 >
-                  <a>Signout</a>
+                  <a>
+                    <i class="fas fa-sign-out-alt fw-bold"></i> Signout
+                  </a>
                 </button>
               </Fragment>
             )}

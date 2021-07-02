@@ -87,7 +87,7 @@ const Blogs = ({
             backgroundColor: '#D6E0F0',
           }}
         >
-          Load more
+          <i class="fas fa-spinner pe-2"></i> Load more
         </button>
       )
     );
@@ -144,7 +144,7 @@ const Blogs = ({
             <header>
               <div className="col-md-12 pt-2 pb-4">
                 <h1 className="fw-bold text-center text-warning">
-                  Newest Blogs
+                  <i class="fas fa-external-link-alt fs-2"></i> Newest Blogs
                 </h1>
               </div>
               <section>

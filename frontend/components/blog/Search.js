@@ -72,7 +72,7 @@ const Search = () => {
             style={{ borderRadius: '12px' }}
           />
         </div>
-        <div className="col-md-3">
+        <div className="col-md-3 text-center">
           <button
             className="btn btn-rounded shadow-1-strong fw-light text-dark ps-5 pe-5 mt-1 pt-2"
             type="submit"

@@ -206,10 +206,12 @@ const ProfileUpdate = () => {
       <div className="container">
         <div className="row">
           <div className="col-md-4 ps-5 pe-5 pt-5 text-center">
-            <h3 className="mb-4">Profile Image</h3>
+            <h3 className="mb-4">
+              <i class="fas fa-camera-retro pe-2 text-danger"></i>Profile Image
+            </h3>
             <img
               src={`${process.env.NEXT_PUBLIC_API_DEVELOPMENT}/user/photo/${username_for_photo}`}
-              className="img img-fluid img-thumbnail mb-3 "
+              className="img img-fluid img-thumbnail shadow-2-strong  mb-3 "
               style={{ maxHeight: '300px', maxWidth: '300px' }}
               alt="user profile"
             />

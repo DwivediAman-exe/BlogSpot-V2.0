@@ -43,6 +43,7 @@ const Card = ({ blog }) => {
             className=" text-decoration-underline fs-2"
             style={{ color: 'black' }}
           >
+            <i class="fas fa-angle-right pe-2 text-warning"></i>
             {blog.title}
           </a>
         </Link>
@@ -51,9 +52,15 @@ const Card = ({ blog }) => {
         <p className="fst-italic" style={{ color: '#766161' }}>
           <small>Written by </small>
           <Link href={`/profile/${blog.postedBy.username}`}>
-            <a className="text-info">{blog.postedBy.username}</a>
+            <a className="text-info">
+              <i class="fas fa-user-edit ps-2"></i> {blog.postedBy.username}{' '}
+            </a>
           </Link>{' '}
-          | <small>Published {moment(blog.updatedAt).fromNow()}</small>
+          |{' '}
+          <small>
+            Published {moment(blog.updatedAt).fromNow()}
+            <i class="fas fa-history ps-2 pe-1"></i>
+          </small>
         </p>
       </section>
       <section>
@@ -76,9 +83,9 @@ const Card = ({ blog }) => {
               src={`${process.env.NEXT_PUBLIC_API_DEVELOPMENT}/blog/photo/${blog.slug}`}
               alt={blog.title}
               style={{
-                height: '200px',
+                height: '180px',
                 width: '180px',
-                maxHeight: '200px',
+                maxHeight: '180px',
                 maxWidth: '180px',
                 objectFit: 'cover',
               }}
@@ -89,7 +96,9 @@ const Card = ({ blog }) => {
           <section className="pt-3">
             <div>{renderHTML(blog.excerpt)}</div>
             <Link href={`/blogs/${blog.slug}`}>
-              <a className="text-info float-end fw-bold pe-4">Read more...</a>
+              <a className="text-info float-end fw-bold pe-4">
+                <i class="fab fa-readme pe-2"></i>Read more...
+              </a>
             </Link>
           </section>
         </div>

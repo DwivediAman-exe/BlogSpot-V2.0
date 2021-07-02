@@ -1,0 +1,8 @@
+.bg {
+  background-image: linear-gradient(
+    rgba(255, 255, 255, 0.164) rgba(230, 211, 211, 0.452)
+      rgba(214, 182, 182, 0.507),
+    rgba(108, 174, 218, 0.698)
+  );
+  overflow-y: hidden;
+}

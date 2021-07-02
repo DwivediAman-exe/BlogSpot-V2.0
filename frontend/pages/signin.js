@@ -13,7 +13,9 @@ const Signin = ({ router }) => {
   return (
     <Layout>
       <div className="container pt-2 p-5">
-        <h2 className="text-center pb-2">SignIn</h2>
+        <h2 className="text-center text-success pb-2">
+          <i class="fas fa-user-check"></i> SignIn
+        </h2>
         <div style={{ width: '80%', margin: 'auto 10%' }}>
           {showRedireectMessage()}
           <SigninComponent />

@@ -69,8 +69,7 @@ const BlogRead = ({ username }) => {
           </h3>
           <p className="fw-light ms-5" style={{ color: '#766161' }}>
             <strong>
-              Written by
-              {blog.postedBy.username} | Published{' '}
+              Written by {blog.postedBy.username} | Published{' '}
               {moment(blog.updatedAt).fromNow()}
             </strong>
           </p>

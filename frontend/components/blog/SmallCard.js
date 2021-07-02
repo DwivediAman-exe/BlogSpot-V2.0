@@ -37,12 +37,14 @@ const SmallCard = ({ blog }) => {
         <small>{renderHTML(blog.excerpt)}</small>
       </div>
       <div className="card-footer">
-        <p className="">
+        <p style={{ color: '#766161' }}>
           Published {moment(blog.updatedAt).fromNow()}
           <Link href={`/`}>
             <a className="float-end">
               <Link href={`/profile/${blog.postedBy.username}`}>
-                <a className="text-info">{blog.postedBy.username}</a>
+                <a className="text-info">
+                  <i class="fas fa-user-edit ps-2"></i> {blog.postedBy.username}
+                </a>
               </Link>
             </a>
           </Link>

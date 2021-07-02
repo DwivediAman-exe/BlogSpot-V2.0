@@ -9,7 +9,9 @@ const UserProfileUpdate = () => {
       <Private>
         <div className="container-fluid">
           <div className="m-3 pt-3 pb-4">
-            <h2 class="text-center text-warning">User Dashboard</h2>
+            <h1 class="text-center text-warning">
+              <i class="fas fa-user-cog pe-3"></i>User Dashboard
+            </h1>
           </div>
 
           <div className="row">

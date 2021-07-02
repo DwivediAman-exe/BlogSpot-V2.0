@@ -117,7 +117,8 @@ const UserProfile = ({ user, blogs, query }) => {
                   style={{ backgroundColor: '#CCF2F4', borderRadius: '20px' }}
                 >
                   <h5 className="ps-2 pb-3 pt-3">
-                    Recent blogs by {user.name}
+                    <i class="fas fa-signal pe-2 text-danger"></i>Recent Blogs
+                    by {user.name}
                   </h5>
                   {showUserBlogs()}
                 </div>
@@ -128,7 +129,10 @@ const UserProfile = ({ user, blogs, query }) => {
                 className="card-body hover-shadow"
                 style={{ backgroundColor: '#CCF2F4', borderRadius: '20px' }}
               >
-                <h5 className="ps-3 pb-3 pt-3">Message {user.name}</h5>
+                <h5 className="ps-3 pb-3 pt-3">
+                  <i class="far fa-comment-dots pe-2 text-danger"></i>Message{' '}
+                  {user.name}
+                </h5>
                 <ContactForm authorEmail={user.email} />
               </div>
             </div>
